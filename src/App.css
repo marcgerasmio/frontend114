@@ -1,38 +1,255 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Navbar */
+    .navbar{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 1);
+      font-weight: bold;
+      padding: 10px 20px;
+    }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    .logo{
+      width: 160px;
+      height: 50px;
+    }
+
+    .nav-text{
+      color:#F9D342 !important;
+    }
+
+    .nav-button{
+      width: 120px !important;
+      height: 38px !important;
+      font-weight: bold !important;
+      background-color: black !important;
+      border-color: #F9D342 !important;
+      border-style: none;
+      color:#F9D342 !important;
+    }
+
+    .nav-button:hover{
+      background-color: #F9D342 !important;
+      color: white !important;
+    }
+/*End*/
+
+
+
+
+
+
+
+
+
+/* Login */
+    .card-center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 550px;
+    }
+
+    .card{
+      width: 30%;
+    }
+
+    .link-primary{
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .login-button{
+      background-color: black !important;
+      border-style: none;
+      color:#F9D342 !important;
+    }
+
+    .login-button:hover{
+      background-color: #F9D342 !important;
+      color: white !important;
+      border-color: #F9D342 !important;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: black;
+    }
+    
+    .or {
+      padding: 0 10px;
+    }
+
+    .google-button{
+      justify-content: center;
+    }
+/*End*/
+
+
+
+
+
+
+
+
+
+
+/*Home*/
+  .quizify{
+    color:#F9D342;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  h1{
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif !important;
+    font-size: 40px !important;
+    font-weight: bold !important;
   }
-  to {
-    transform: rotate(360deg);
+
+  .description{
+    justify-content: center;
   }
-}
+
+  .bg{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: fixed;
+    filter: brightness(25%);
+  }
+
+  .text{
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  .div{
+    position: relative;
+  }
+
+  .card-title{
+    font-weight: bold !important;
+  }
+
+  .div .card-title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 60px;
+    background-color: #F9D342;
+  }
+
+  .home-card{
+    width: 25rem;
+    height: 22rem !important;
+    background-color: black !important;
+    color: white !important;
+  }
+
+  .home-photo{
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-text{
+    text-align: justify;
+  }
+/*End*/
+
+
+
+
+
+
+
+
+/*Footer*/
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .footer a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+/*End*/
+
+
+
+
+
+
+
+
+/*About Us*/
+  .app-description{
+    text-align: justify;
+    font-size: 20px;
+  }
+
+  .div{
+    position: relative;
+  }
+
+  .div h1::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 75px;
+    background-color: #F9D342;
+  }
+
+  .photo-size{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cards{
+    margin: 50px;
+    width: 60%;
+    height: 30%;
+  }
+
+  .contain{
+    margin: auto;
+    width: 1000px;
+  }
+
+  .card-footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333 !important;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .card-footer a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+/*end*/
