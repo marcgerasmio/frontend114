@@ -6,12 +6,38 @@ import {Form, Card, Button, InputGroup} from 'react-bootstrap';
 import { MdAlternateEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from 'react-router-dom';
+import supabase from './supabaseClient.js';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
-    let [preference, setPreference] = useState("login")
-    function changePreference(){
-        setPreference(preference === "login" ? "register" : "login")
-    }
+
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const login = async () => {
+        try {
+          const { data } = await supabase
+            .from('users')
+            .select('*')
+            .eq('email', email)
+            .single();
+    
+          if (data && data.password === password) {
+            navigate('/home');
+    
+            setErrorMessage('');
+          } else {
+            setErrorMessage('Invalid email or password');
+            console.log(data);
+          }
+        } catch (error) {
+          console.error('Error during login:', error.message);
+          setErrorMessage('An error occurred during login');
+        }
+      };
 
     const [validated, setValidated] = useState(false);
     const handleSubmit = (event) => {
@@ -21,9 +47,10 @@ function Login(){
             event.stopPropagation();
         }
         setValidated(true);
+        login();
     };
 
-    if(preference === "login"){
+ 
         return(
            <>
             <Navbar />
@@ -33,14 +60,14 @@ function Login(){
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <InputGroup className="mb-3" hasValidation>
                                 <InputGroup.Text><MdAlternateEmail /></InputGroup.Text>
-                                <Form.Control type="text" placeholder="Enter email" required />
+                                <Form.Control type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" required />
                                 <Form.Control.Feedback type="invalid">
                                     Please use an email.
                                 </Form.Control.Feedback>
                             </InputGroup>
                             <InputGroup className="mb-3" hasValidation>
                                 <InputGroup.Text><RiLockPasswordFill /></InputGroup.Text>
-                                <Form.Control type="password" placeholder="Enter password" required />
+                                <Form.Control type="password"value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required />
                                 <Form.Control.Feedback type="invalid">
                                     Field cannot be empty.
                                 </Form.Control.Feedback>
@@ -49,11 +76,12 @@ function Login(){
                                 <Form.Check required label="Remember password"/>
                             </Form.Group>
                             <div className="d-grid gap-2">
-                                <Button type='submit' className='login-button' variant='dark'>Login</Button>
-                                <span className="link-primary" onClick={changePreference}>Don't have an account?</span>  
+                                <Button onClick={handleSubmit} className='login-button' variant='dark'>Login</Button>
+                                <Link to = '/signup'>
+                                <span className="link-primary" >Don't have an account?</span>  
+                                </Link>
                             </div>             
                         </Form>
-
                         <br/>
                         <div className="container">
                             <div className="line"></div>
@@ -61,7 +89,6 @@ function Login(){
                             <div className="line"></div>
                         </div>
                         <br/>
-
                         <InputGroup className="mb-3 google-button">
                             <InputGroup.Text><FcGoogle /></InputGroup.Text>
                             <Button className=''>Login with Google</Button> 
@@ -73,53 +100,6 @@ function Login(){
         )
     }
 
-    return(
-       <>
-        <Navbar />
-        <div className='card-center'>
-            <Card className='card'>
-                <Card.Body> 
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                        <InputGroup className="mb-3" hasValidation>
-                            <InputGroup.Text><MdAlternateEmail /></InputGroup.Text>
-                            <Form.Control type="text" placeholder="Enter email" required />
-                            <Form.Control.Feedback type="invalid">
-                                Please use an email.
-                            </Form.Control.Feedback>
-                        </InputGroup>
-                        <InputGroup className="mb-3" hasValidation>
-                            <InputGroup.Text><RiLockPasswordFill /></InputGroup.Text>
-                            <Form.Control type="password" placeholder="Enter password" required />
-                            <Form.Control.Feedback type="invalid">
-                                Field cannot be empty.
-                            </Form.Control.Feedback>
-                        </InputGroup>
-                        <InputGroup className="mb-3" hasValidation>
-                            <InputGroup.Text><RiLockPasswordFill /></InputGroup.Text>
-                            <Form.Control type="password" placeholder="Confirm password" required />
-                            <Form.Control.Feedback type="invalid">
-                                Field cannot be empty.
-                            </Form.Control.Feedback>
-                        </InputGroup>
-                        <Form.Group className="mb-3">
-                            <Form.Check
-                                style={{fontSize:'13px'}}
-                                required
-                                label="Agree to terms and conditions"
-                                feedback="You must agree before submitting."
-                                feedbackType="invalid"
-                            />
-                        </Form.Group>
-                        <div className="d-grid gap-2">
-                            <Button className='login-button' variant="dark">Register</Button>
-                            <span className="link-primary" onClick={changePreference}>Already have an account?</span>
-                        </div>               
-                    </Form>
-                </Card.Body>
-            </Card>
-         </div>
-       </>
-    )
-}
+
 
 export default Login;

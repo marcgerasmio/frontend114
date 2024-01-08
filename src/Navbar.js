@@ -1,16 +1,25 @@
 import {Nav, Navbar, Image, Container, Button} from 'react-bootstrap';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function NavbarMain() {
   return (
     <Navbar className='navbar'>
       <Container>
-      <a href='#logo'><Image src="logo.png" className='logo'/> </a>
-        <Nav>
-          <Nav.Link href="#" className='nav-text'>Home</Nav.Link>
-          <Nav.Link href="#" className='nav-text'>About Us</Nav.Link>
-          <Button className='nav-button'>Sign In</Button>
-        </Nav>
+        <Link to ="/home">
+          <a><Image src="logo.png" className='logo'/></a>
+        </Link>
+          <Nav>
+            <Link to ="/home" style={{textDecoration: 'none'}}>
+              <Nav.Link href = "/home" className='nav-text'>Home</Nav.Link>
+            </Link>
+            <Link to ="/about" style={{textDecoration: 'none'}}>
+              <Nav.Link href="/about" className='nav-text'>About Us</Nav.Link>
+            </Link>
+            <Link to ="/logout">
+              <a href='/logout'><Button className='nav-button'>Logout</Button></a>
+            </Link>
+          </Nav>
       </Container>
     </Navbar>
   );

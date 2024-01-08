@@ -3,6 +3,7 @@ import {Image, Card, Button} from 'react-bootstrap';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function Sample() {
   return (
@@ -29,7 +30,9 @@ function Sample() {
                     You can use this feature to review the main ideas of a text or to study for a test. 
                     Quizify uses natural language processing and machine learning to extract the most relevant information from any text.
                 </Card.Text>
+                <Link to ="/summary">
                 <Button variant="dark" className='nav-button'>Get Started</Button>
+                </Link>
             </Card.Body>
         </Card>
         <Card className='home-card'>
@@ -46,7 +49,9 @@ function Sample() {
                     You can choose from different types of questions, such as multiple choice, fill in the blank, or true or false. 
                     Quizify is the perfect tool for students, teachers, or anyone who loves to learn new things.
                 </Card.Text>
+                <Link to = "/quiz">
                 <Button variant="dark" className='nav-button'>Get Started</Button>
+                </Link>
             </Card.Body>
         </Card>
     </div>
